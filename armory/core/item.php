@@ -26,14 +26,13 @@
 		echo "No id...";
 		die;
 	}
-	$id = $_GET['id'];
+	$id = htmlentities($_GET['id']);
 	class Item
 	{
 		private static function MakeStat($id, $count)
 		{
 			$stat = StatHandler::getStat($id);
-			$color = '<span style="color:white">'; 
-			return "$color+ $count $stat</span>";
+			return "<span style=\"color:white\">" . $count . $stat . "</span>";
 		}
 		private static function calculateItemPrice($cost)
 		{
@@ -158,15 +157,11 @@
 			*/
 			if(strlen($description) > 0)
 			{
-				$color = '<span style="color: yellow">';
-				echo $color.'"'.$description.'"</span>';
-				echo $b;
+				echo "<span style=\"color: yellow\">".$description."</span><br>";
 			}
 			if($stackable > 0)
 			{
-				$color = '<span style="color:white">';
-				echo "$color Max Stack: $stackable</span>";
-				echo $b;
+				echo "<span style=\"color:white\">Max Stack: " . $stackable . "</span><br>";
 			}
 			if($SellPrice > 0)
 			{
@@ -186,8 +181,7 @@
 				} else {
 					$copper = null;
 				}
-			    echo $color . " Sell Price: " . $gold . $silver . $copper . "</span>";  
-				echo $b;
+			    echo $color . " Sell Price: " . $gold . $silver . $copper . "</span><br>";  
 			}
 			echo $displayid;
 				echo $b;
